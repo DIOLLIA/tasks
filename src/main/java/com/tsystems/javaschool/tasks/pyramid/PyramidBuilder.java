@@ -1,6 +1,6 @@
 package com.tsystems.javaschool.tasks.pyramid;
 
-import java.util.List;
+import java.util.*;
 
 public class PyramidBuilder {
 
@@ -12,10 +12,47 @@ public class PyramidBuilder {
      * @return 2d array with pyramid inside
      * @throws {@link CannotBuildPyramidException} if the pyramid cannot be build with given input
      */
+
     public int[][] buildPyramid(List<Integer> inputNumbers) {
-        // TODO : Implement your solution here
-        return new int[0][0];
+        int heightOfPyramid = 0;
+        int widthOfPyramid;
+        int sum = 1;
+        int enumOfElements = 1;
+        int[][] arrayForPyramid;
+
+        for (int i = 2; i < inputNumbers.size(); i++) {
+            sum += i;
+            if (inputNumbers.size() == sum) {
+                heightOfPyramid = i;
+                break;
+            }
+        }
+
+        if (inputNumbers.contains(null)) {
+            throw new CannotBuildPyramidException("Null elements found");
+        }
+        widthOfPyramid = heightOfPyramid * 2 - 1;
+
+        try {
+            arrayForPyramid = new int[heightOfPyramid][widthOfPyramid];
+        } catch (NegativeArraySizeException errSize) {
+            throw new CannotBuildPyramidException("Incorrect parameters (width/height) found");
+        }
+        Collections.sort(inputNumbers);
+        ArrayList<Integer> tempInputList = new ArrayList<>(inputNumbers);
+
+        for (int i = 0; i < heightOfPyramid; i++) {
+            for (int j = 0; j < enumOfElements; j++) {
+                int indexOfNextElement;
+                int firstElementInLineIndex = heightOfPyramid - enumOfElements;
+                indexOfNextElement = firstElementInLineIndex + j * 2;
+                arrayForPyramid[i][indexOfNextElement] = tempInputList.get(j);
+            }
+            enumOfElements++;
+            for (int k = 0; k <= i; k++) {
+                tempInputList.remove(0);
+            }
+        }
+        return arrayForPyramid;
     }
-
-
 }
