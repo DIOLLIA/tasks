@@ -12,7 +12,7 @@ The exam includes 3 tasks to be done: [Calculator](/tasks/Calculator.md), [Pyram
 ### Result ###
 
 * Author name : Rudkov Andrey
-* Codeship : [![codeship](https://app.codeship.com/projects/01c32e10-e359-0135-57dc-5e586c006d0a/status?branch=master)](https://app.codeship.com/projects/268485)
+* Codeship : [![codeship](https://app.codeship.com/projects/fb7c56b0-e36d-0135-57dc-5e586c006d0a/status?branch=master)](https://app.codeship.com/projects/268602)
 
 ### How to start?  ###
 * Install [GIT](https://git-scm.com/) and [Maven](https://maven.apache.org)
