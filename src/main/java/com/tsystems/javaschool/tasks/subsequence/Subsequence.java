@@ -13,7 +13,29 @@ public class Subsequence {
      * @param list    second sequence
      * @return <code>true</code> if possible, otherwise <code>false</code>
      */
-    public boolean find2(List subList, List list) {
+    public boolean find(List subList, List list) {
+        if (subList == null || list == null) {
+            throw new IllegalArgumentException("One of list contains null");
+        }
+
+        Iterator iterForList = list.iterator();
+        for (Object elementOfSubList : subList) {
+            if (iterForList.hasNext()) {
+                while (iterForList.hasNext()) {
+                    if (elementOfSubList.equals(iterForList.next())) {
+                        break;
+                    }
+                }
+            } else {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    //First version of find method. All tests are passed too
+    public boolean find1(List subList, List list) {
         if (subList == null || list == null) {
             throw new IllegalArgumentException("One of list contains null");
         }
@@ -38,32 +60,7 @@ public class Subsequence {
                 }
             }
         }
-        return isPossible;
-    }
 
-    //Этот метод так же рабочий. Мне он нравится больше, так как записан более компактно
-    public boolean find(List subList, List list) {
-        if (subList == null || list == null) {
-            throw new IllegalArgumentException("One of list contains null");
-        }
-        if (subList.size() > list.size()) {
-            return false;
-        }
-        if (subList.isEmpty()) {
-            return true;
-        }
-        Iterator iterForList = list.iterator();
-        for (Object elementOfSubList : subList) {
-            if (iterForList.hasNext()) {
-                while (iterForList.hasNext()) {
-                    if (elementOfSubList.equals(iterForList.next())) {
-                        break;
-                    }
-                }
-            } else {
-                return false;
-            }
-        }
-        return true;
+        return isPossible;
     }
 }
