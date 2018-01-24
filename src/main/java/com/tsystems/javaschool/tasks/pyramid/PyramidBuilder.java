@@ -36,7 +36,8 @@ public class PyramidBuilder {
         try {
             arrayForPyramid = new int[heightOfPyramid][widthOfPyramid];
         } catch (NegativeArraySizeException errSize) {
-            throw new CannotBuildPyramidException("Incorrect parameters (width/height) found");
+            throw new CannotBuildPyramidException("Incorrect parameters (width/height): " +
+                    widthOfPyramid + "/" + heightOfPyramid + "" + " found");
         }
         Collections.sort(inputNumbers);
         ArrayList<Integer> tempInputList = new ArrayList<>(inputNumbers);
